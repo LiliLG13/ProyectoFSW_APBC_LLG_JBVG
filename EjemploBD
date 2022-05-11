@@ -88,3 +88,399 @@ exec sp_helpdb SazonVegano6B
 exec sp_helpfile SazonVegano_sec1
 --CONSULTAR UN FILEGROUP DE LA BD
 exec sp_helpfilegroup SazonVegano_FG2
+
+
+CREATE SCHEMA Ventas
+go
+CREATE SCHEMA Proveedores
+go
+CREATE SCHEMA Menu
+go
+CREATE SCHEMA DatosPersonales
+go
+CREATE SCHEMA PersonalRestaurante
+go
+
+
+-- =====================================
+--    Crear funcion de particion
+-- =====================================
+CREATE PARTITION FUNCTION pf_subtotal  (float)
+AS RANGE LEFT FOR VALUES (1000);
+go
+
+CREATE PARTITION FUNCTION pf_fecha  (date)
+AS RANGE LEFT FOR VALUES ('06-30-2022','12-31-2022');
+go
+
+CREATE PARTITION FUNCTION pf_pago  (float)
+AS RANGE LEFT FOR VALUES (5000);
+go
+
+
+-- ===================================
+--Crear el squema de particionemiento (La ubicación de los datos)
+-- ===================================
+CREATE PARTITION SCHEME ps_subtotal
+AS 
+	PARTITION pf_subtotal
+	TO (SazonVegano_FG_Part1,SazonVegano_FG_Part2)
+GO
+
+CREATE PARTITION SCHEME ps_fecha 
+AS 
+	PARTITION pf_fecha
+	TO (SazonVegano_FG_Part3,SazonVegano_FG_Part4,"Primary")
+GO
+
+CREATE PARTITION SCHEME ps_pago
+AS 
+	PARTITION pf_pago
+	TO (SazonVegano_FG_Part5,SazonVegano_FG_Part6)
+GO
+
+-- =====================================
+--Crear objetos para los esquemas (tablas)
+-- =====================================
+
+--------TABLA: EMPLEADOS--------
+create table PersonalRestaurante.Empleados(
+  ID_Empleado int not null,
+	nombre varchar(50) not null,
+	fechaNacimiento date not null,
+	fechaIngreso date not null,
+	estadoCivil varchar(30) not null,
+	direccion varchar(200) not null,
+	telefono varchar(15) not null,
+	correo varchar(50) not null,
+	puesto varchar(30) not null,
+	horasTrabajo float not null,
+	sexo char not null
+	constraint pk_empleados  primary key(ID_Empleado)
+	)on SazonVegano_FG4
+	with (data_compression=Page)
+go
+
+--------TABLA: CLIENTES--------
+create table DatosPersonales.Clientes
+(
+	ID_Cliente int not null,
+	nombre varchar(50) not null,
+	telefono varchar(15) not null,
+	correo varchar(50) not null,
+	sexo char not null,
+	direccion varchar(60) not null,
+	rfc varchar(13) not null,
+	constraint pk_clientes primary key(ID_Cliente)
+)on SazonVegano_FG3
+	with (data_compression=Page)
+go
+
+--------TABLA: TARJETAS--------
+create table DatosPersonales.Tarjetas
+(
+	ID_Tarjeta int not null,
+	ID_Cliente int not null,
+	numero varchar(16) not null,
+	nip char(4) not null,
+	saldo float not null,
+	tipoTarjeta varchar(30) not null,
+	constraint pk_Tarjetas primary key(ID_Tarjeta)
+)on SazonVegano_FG3
+	with (data_compression=Row)
+go
+
+--------TABLA: INGREDIENTES--------
+create table Menu.Ingredientes
+(
+	ID_Ingrediente int not null,
+	nombre varchar(50) not null,
+	marca varchar(25) not null,
+	caducidad date not null,
+	existencia int not null,
+	costoCompra float not null,
+	constraint pk_ingredientes primary key(ID_Ingrediente)
+) on SazonVegano_FG2
+	with (data_compression=Page)
+go
+
+--------TABLA: CATEGORIA--------
+create table Menu.Categoria
+(
+	ID_Categoria int not null,
+	nombre varchar(50) not null,
+	descripcion varchar(200) not null,
+	constraint pk_categoria primary key(ID_Categoria)
+)on SazonVegano_FG2
+	with (data_compression=Page)
+go
+
+--------TABLA: PLATILLO--------
+create table Menu.Platillo
+(
+	ID_Platillo int not null,
+	ID_Categoria int not null,
+	nombre varchar(50) not null,
+	descripcion varchar(50) not null,
+	precio float not null,
+	constraint pk_platillo primary key(ID_Platillo)
+) on SazonVegano_FG2
+	with (data_compression=Page)
+go
+
+--------TABLA: INGREDIENTES PLATILLO--------
+create table Menu.IngredientesPlatillo
+(
+	ID_Platillo int not null,
+	ID_Ingrediente int not null,
+	cantidadIngredientes int not null
+) on SazonVegano_FG2
+	with (data_compression=Row)
+go
+
+--------TABLA: ORDENES--------
+create table Ventas.Ordenes
+(
+	ID_Orden int not null,
+	ID_Mesero int not null,
+	fecha date not null,
+	mesa int not null,
+	totalPagar float not null,
+	constraint pk_ordenes primary key(ID_Orden)
+)
+	with (data_compression=Row)
+go
+
+--------TABLA: DETALLES ORDEN--------
+create table Ventas.DetallesOrden
+(
+	ID_Detalle int not null,
+	ID_Orden int not null,
+	ID_Platillo int not null,
+	estatus varchar(10) not null,
+	cantidad int not null,
+	precio float not null,
+	subtotal as cantidad*precio PERSISTED,
+	constraint pk_detallesOrden primary key(ID_Detalle,subtotal)
+)
+on ps_subtotal(subtotal)
+with (data_compression=Row)
+go
+
+--------TABLA: PAGOS--------
+create table Ventas.Pagos
+(
+	ID_Pago int not null,
+	ID_Orden int not null,
+	importe float not null,
+	fecha date not null,
+    tipo varchar(10) not null,
+	constraint pk_pagos primary key(ID_Pago)
+)
+	with (data_compression=Row)
+go
+
+--------TABLA: PAGOS TARJETAS--------
+create table Ventas.PagosTarjeta
+(
+	ID_Pago int not null,
+	ID_Tarjeta int not null,
+    estatus varchar(10) not null
+)
+	with (data_compression=Row)
+go
+
+--------TABLA: FACTURA--------
+create table Ventas.Factura
+(
+	ID_Factura int not null,
+	ID_Cliente int not null,
+	ID_Orden int not null,
+	fecha date not null,
+	importe float not null,
+	tipoPago varchar(50),
+	folio int not null,
+	constraint pk_factura primary key(ID_Factura)
+)
+	with (data_compression=Row)
+go
+
+--------TABLA: PROVEEDORES--------
+create table Proveedores.Proveedores
+(
+	ID_Proveedor int not null,
+	nombreEmpresa varchar(60) not null,
+	telefono varchar(15) not null,
+	direccion varchar(200) not null,
+	ciudad varchar(30) not null,
+	estado varchar(30) not null,
+	pais varchar(50) not null,
+	constraint pk_proveedores primary key(ID_Proveedor)
+)
+on SazonVegano_FG1
+with (data_compression=Page)
+go
+
+--------TABLA: DETALLE PEDIDO--------
+create table Proveedores.DetallePedido
+(
+	ID_PedidoDetalle int not null,
+	ID_Ingrediente int not null,
+    ID_Pedido int not null,
+	cantidad int not null,
+	pagoTotal float not null,
+	costoCompra float not null,	
+	constraint pk_detallesPedido primary key(ID_PedidoDetalle,pagoTotal)
+)
+on ps_pago(pagoTotal)
+	with (data_compression=Row)
+go
+alter table proveedores.DetallePedido add  fechaRecepcion date not null
+alter table proveedores.DetallePedido add  constraint pk_detalle primary key  (
+
+--------TABLA: PEDIDOS PROVEDOR--------
+create table Proveedores.PedidosProv
+(
+	ID_Pedido int not null,
+	ID_Empleado int not null,
+	ID_Proveedor int not null,
+	totalPagar float not null,
+	fechaRegistro date not null,	
+	fechaRecepcion date not null,	
+	estatus char not null,	
+	--constraint pk_pedidosProv primary key(ID_Pedido, fechaRecepcion)
+	)
+on ps_fecha(fechaRecepcion)
+	with (data_compression=Row)
+go
+create clustered index idx_pedidosProv
+on proveedores.pedidosprov(fechaRecepcion desc)
+go
+alter table proveedores.pedidosprov add constraint pk_pedidosProv primary key nonclustered(ID_Pedido, fechaRecepcion)
+-- =============================================
+--------CREACIÓN DE CLAVES FORÁNEAS--------
+-- =============================================
+alter table DatosPersonales.Tarjetas add constraint fk_tarjetasClientes  foreign key(ID_Cliente) references DatosPersonales.Clientes(ID_Cliente) 
+
+alter table Menu.Platillo add constraint fk_platilloCategoria foreign key(ID_Categoria) references Menu.Categoria(ID_Categoria) 
+
+alter table Menu.IngredientesPlatillo add constraint fk_ingredientesPlatilloPlatillo foreign key(ID_Platillo) references Menu.Platillo(ID_Platillo)
+alter table Menu.IngredientesPlatillo add constraint fk_ingredientesPlatilloIngredientes foreign key(ID_Ingrediente) references Menu.Ingredientes(ID_Ingrediente) 
+
+alter table Ventas.Ordenes add	constraint fk_ordenesEmpleados foreign key(ID_Mesero) references PersonalRestaurante.Empleados(ID_Empleado) 
+
+alter table Ventas.DetallesOrden add constraint fk_detallesOrdenPlatillo  foreign key(ID_Platillo) references Menu.Platillo(ID_Platillo)
+alter table Ventas.DetallesOrden add constraint fk_detallesOrdenOrden foreign key(ID_Orden) references Ventas.Ordenes(ID_Orden) 
+
+alter table Ventas.Pagos add constraint fk_pagosOrdenes foreign key(ID_Orden) references Ventas.Ordenes(ID_Orden) 
+
+alter table Ventas.PagosTarjeta add	constraint fk_pagosTarjetaPagos foreign key(ID_Pago) references Ventas.Pagos(ID_Pago)
+alter table Ventas.PagosTarjeta add	constraint fk_pagosTarjetaTarjeta foreign key(ID_Tarjeta) references DatosPersonales.Tarjetas(ID_Tarjeta) 
+
+alter table Ventas.Factura add	constraint fk_facturaOrdenes  foreign key(ID_Orden) references Ventas.Ordenes(ID_Orden)
+alter table Ventas.Factura add	constraint fk_facturaClientes foreign key(ID_Cliente) references DatosPersonales.Clientes(ID_Cliente) 
+
+----
+alter table Proveedores.DetallePedido add constraint fk_detallePedidoPedidosProv foreign key(ID_Pedido,fecharecepcion) references Proveedores.PedidosProv(ID_Pedido,fechaRecepcion)
+alter table Proveedores.DetallePedido add constraint fk_detallesPedidoIngred  foreign key(ID_Ingrediente) references Menu.Ingredientes(ID_Ingrediente) 
+
+alter table Proveedores.PedidosProv add	constraint fk_pedidosprovEmpleados foreign key(ID_Empleado) references PersonalRestaurante.Empleados(ID_Empleado)
+alter table Proveedores.PedidosProv add	constraint fk_pedidosProvProveedores foreign key(ID_Proveedor) references Proveedores.Proveedores(ID_Proveedor) 
+
+-- =============================================
+--------CREACIÓN DE CLAVES ÚNICAS--------
+-- =============================================
+alter table PersonalRestaurante.Empleados add constraint uq_correoEmpleados unique(correo)
+alter table DatosPersonales.Clientes add constraint uq_correoClientes unique(correo)
+alter table Menu.Ingredientes add constraint uq_nombreIngred unique(nombre)
+alter table Proveedores.Proveedores add constraint uq_nombreEmpresa unique(nombreEmpresa)
+alter table Menu.Platillo add constraint uq_nombrePlatillo unique(nombre)
+alter table Menu.Categoria add constraint uq_nombreCategoria unique(nombre)
+alter table DatosPersonales.Tarjetas add constraint uq_numTarjeta unique(numero)
+alter table DatosPersonales.Tarjetas add constraint uq_nip unique(nip)
+go
+
+-- ==========================================================
+--------CREACIÓN DE RESTRICCIONES DE DOMINIO (CHECKS)--------
+-- ==========================================================
+alter table PersonalRestaurante.Empleados add constraint chk_fechaNacimiento check((year(getdate()) - year(fechaNacimiento))>=18)
+alter table PersonalRestaurante.Empleados add constraint chk_fechaIngreso check(fechaIngreso<=getdate())
+alter table PersonalRestaurante.Empleados add constraint chk_estadoCivil check(estadoCivil in('Soltero','Casado','Divorciado'))
+alter table PersonalRestaurante.Empleados add constraint chk_celular check(telefono like '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')
+alter table PersonalRestaurante.Empleados add constraint chk_puesto check(puesto in('Mesero','Cajero','Chef','Gerente'))
+alter table PersonalRestaurante.Empleados add constraint chk_horasTrabajo check(horasTrabajo between 1 and 8)
+alter table PersonalRestaurante.Empleados add constraint chk_sexoEmpleados check(sexo in('F','M'))
+alter table PersonalRestaurante.Empleados add constraint chk_correoEmpleados check(correo like '%@%.%')
+
+alter table DatosPersonales.Clientes add constraint chk_telefonoClientes check(telefono like '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')
+alter table DatosPersonales.Clientes add constraint chk_sexoClientes check(sexo in('F','M'))
+alter table DatosPersonales.Clientes add constraint chk_correoClientes check(correo like '%@%.%')
+
+alter table Menu.Ingredientes add constraint chk_caducidad check(caducidad>getdate())
+alter table Menu.Ingredientes add constraint chk_existencia check(existencia>=0)
+alter table Menu.Ingredientes add constraint chk_costoCompra check(costoCompra>0)
+
+alter table Proveedores.Proveedores add constraint chk_telefonoProveedores check(telefono like '[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]')
+
+alter table Proveedores.PedidosProv add constraint chk_totalPagar check(totalPagar>0)
+alter table Proveedores.PedidosProv add constraint chk_fechaRecepcion check(fechaRecepcion>=getdate())
+alter table Proveedores.PedidosProv add constraint chk_estatus check(estatus in('Recibido','Proceso', 'Cancelado'))
+
+alter table Proveedores.DetallePedido add constraint chk_cantidadPedido check(cantidad>0)
+alter table Proveedores.DetallePedido add constraint chk_pagoTotalPedido  check(pagoTotal>=0)
+alter table Proveedores.DetallePedido add constraint chk_costoCompra check(costoCompra>0)
+
+alter table Menu.Platillo add constraint chk_precioPlatillo check(precio>0)
+
+alter table Menu.IngredientesPlatillo add constraint chk_cantidadIngred check(cantidadIngredientes>=1)
+
+alter table Ventas.Factura add constraint chk_importef check(importe>=0)
+alter table Ventas.Factura add constraint chk_tipoPagoF check(tipoPago in('Efectivo','Tarjeta'))
+
+alter table DatosPersonales.Tarjetas add constraint chk_numTarjeta check(numero like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+alter table DatosPersonales.Tarjetas add constraint chk_nip check(nip like '[0-9][0-9][0-9][0-9]')
+alter table DatosPersonales.Tarjetas add constraint chk_saldo check(saldo>0)
+alter table DatosPersonales.Tarjetas add constraint chk_tipoTarjeta check(tipoTarjeta in('Debito','Credito'))
+
+alter table Ventas.PagosTarjeta add constraint chk_estatus check(estatus in('Autorizada ','Rechazada'))
+
+alter table Ventas.Pagos add constraint chk_importeP check(importe>0)
+alter table Ventas.Pagos add constraint chk_tipo check(tipo in('Efectivo','Tarjeta'))
+
+alter table Ventas.Ordenes add constraint chk_mesa check(mesa between 1 and 20)
+alter table Ventas.Ordenes add constraint chk_totalPagar check(totalPagar>=0)
+
+alter table Ventas.DetallesOrden add constraint chk_cantidadDetalle check(cantidad>0)
+alter table Ventas.DetallesOrden add constraint chk_precio check(precio>=0)
+alter table Ventas.DetallesOrden add constraint chk_estatusDetalle check(estatus in('Para llevar','Aqui'))
+go
+
+-- ===================================
+--------CREACIÓN DE DEFAULTS--------
+-- ====================================
+alter table PersonalRestaurante.Empleados add constraint df_puesto default 'Mesero' for puesto
+
+alter table Menu.Ingredientes add constraint df_existencia default 0 for existencia
+
+alter table Proveedores.Proveedores add constraint df_pais default 'Mexico' for pais
+
+alter table Proveedores.DetallePedido add constraint df_cantidadP default 1 for cantidad
+alter table Proveedores.DetallePedido add constraint df_pagoTotal default 0 for pagoTotal
+alter table Proveedores.DetallePedido add constraint df_costoCompra default 0 for costoCompra
+
+alter table Ventas.Pagos add constraint df_fechaPago default getdate() for fecha
+alter table Ventas.Pagos add constraint df_tipo default 'Efectivo' for tipo
+
+alter table Proveedores.PedidosProv add constraint df_fechaRegistro default getdate() for fechaRegistro
+
+alter table DatosPersonales.Tarjetas add constraint df_saldo default 0 for saldo
+
+alter table Ventas.Factura add constraint df_fechaFactura default getdate() for fecha
+
+alter table Ventas.Ordenes add constraint df_fechaOrden default getdate() for fecha
+alter table Ventas.Ordenes add constraint df_totalPagar default 0 for totalPagar 
+
+alter table Ventas.DetallesOrden add constraint df_cantidadO  default 1 for cantidad
+alter table Ventas.DetallesOrden add constraint df_subtotal default 0 for subtotal
+alter table Ventas.DetallesOrden add constraint df_estatusDetalle default 'Aqui' for  estatus
+go

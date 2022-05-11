@@ -331,7 +331,7 @@ create table Proveedores.DetallePedido
 	pagoTotal float not null,
 	costoCompra float not null,	
 	constraint pk_detallesPedido primary key(ID_PedidoDetalle,pagoTotal)
-)
+) 
 on ps_pago(pagoTotal)
 	with (data_compression=Row)
 go

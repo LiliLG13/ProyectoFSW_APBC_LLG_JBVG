@@ -1,0 +1,90 @@
+-- =============================================
+-- Create database with filestream filegroups
+--ANA PAULA BARAJAS CAMPOS
+--LILIANA LÓPEZ GUERRERO
+--JAZMÍN BERENICE VEGA GÓMEZ
+-- =============================================
+
+CREATE DATABASE SazonVegano6B
+ON PRIMARY
+	(NAME = SazonVegano_dat,
+	  FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_dat.mdf',
+          SIZE = 5MB,
+          MAXSIZE = 367MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG1
+	      (NAME = SazonVegano_sec1,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_sec1.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 2MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG2
+	      (NAME = SazonVegano_sec2,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_sec2.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 5MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG3
+		  (NAME = SazonVegano_sec3,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_sec3.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 24MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG4
+		  (NAME = SazonVegano_sec4,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_sec4.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 1MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part1
+		  (NAME = SazonVegano_part1,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part1.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 119MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part2
+		  (NAME = SazonVegano_part2,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part2.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 119MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part3
+		  (NAME = SazonVegano_part3,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part3.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 139MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part4
+		  (NAME = SazonVegano_part4,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part4.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 139MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part5
+		  (NAME = SazonVegano_part5,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part5.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 151MB,
+          FILEGROWTH = 1MB),
+FILEGROUP SazonVegano_FG_Part6
+		  (NAME = SazonVegano_part6,
+	FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_part6.ndf',
+          SIZE = 1MB,
+          MAXSIZE = 151MB,
+          FILEGROWTH = 1MB)
+		  
+LOG ON
+	( NAME = SazonVegano_log,
+	  FILENAME = N'C:\Bases_Datos\SazonVegano6B\SazonVegano_log.ldf',
+          SIZE = 5MB,
+          MAXSIZE = 364MB,
+          FILEGROWTH = 1MB)
+GO
+
+
+--CONSULTAR LA ESTRUCTURA DE LA BD
+exec sp_helpdb SazonVegano6B
+--CONSULTAR UN ARCHIVO ESPECIFICO DE LA BD
+exec sp_helpfile SazonVegano_sec1
+--CONSULTAR UN FILEGROUP DE LA BD
+exec sp_helpfilegroup SazonVegano_FG2

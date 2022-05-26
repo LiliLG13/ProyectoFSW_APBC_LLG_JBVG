@@ -9,6 +9,8 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { LoginComponent } from './login/login.component';
 import { EmpleadosComponent } from './empleados/empleados.component';
 import { MainComponent } from './main/main.component';
+import { AlmacenComponent } from './almacen/almacen.component';
+import { FacturaComponent } from './factura/factura.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { MainComponent } from './main/main.component';
     ProveedoresComponent,
     LoginComponent,
     EmpleadosComponent,
-    MainComponent
+    MainComponent,
+    AlmacenComponent,
+    FacturaComponent
   ],
   imports: [
     BrowserModule,

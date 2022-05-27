@@ -122,9 +122,25 @@
           <button class="btn btn-danger">-</button>
         </div>
 
-        <a href="#" class="btn btn-success">Realizar Orden</a>
+        <button
+                routerLink="/orden"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="btn btn-success me-4"
+                type="button"
+              >
+                Realizar orden
+              </button>
         <br /><br />
-        <a href="#" class="btn btn-success">Generar factura</a>
+        <button
+          routerLink="/factura"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="btn btn-success me-4"
+          type="button"
+        >
+          Generar factura
+        </button>
         <br /><br />
       </table>
     </div>

@@ -205,7 +205,15 @@
           <br />
           <div class="row justify-content-center">
             <div class="col-3">
-              <a href="#" class="btn btn-success">Volver al menú principal</a>
+              <button
+                routerLink="/main"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="btn btn-success me-4"
+                type="button"
+              >
+                Volver al menú principal
+              </button>
             </div>
             <div class="col-3">
               <img
@@ -215,7 +223,15 @@
             </div>
 
             <div class="col-3">
-              <a href="#" class="btn btn-success">Realizar Orden</a>
+              <button
+                routerLink="/orden"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="btn btn-success me-4"
+                type="button"
+              >
+                Realizar Orden
+              </button>
             </div>
 
             <br />

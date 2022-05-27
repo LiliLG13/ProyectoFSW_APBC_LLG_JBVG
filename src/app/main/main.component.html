@@ -17,16 +17,48 @@
           <div class="card-body">
             <h5 class="card-title">Bienvenido(a) a SAZÓN VEGANO</h5>
             <p class="card-text">¿Qué acción desea realizar?</p>
-            <a href="#" class="btn btn-success">Consultar Menú</a>
+
+            <button
+              routerLink="/menu"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="btn btn-success me-4"
+              type="button"
+            >
+              Consultar Menú
+            </button>
             <br />
             <br />
-            <a href="#" class="btn btn-success">Consultar Proveedores</a>
+            <button
+              routerLink="/proveedores"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="btn btn-success me-4"
+              type="button"
+            >
+              Consultar Proveedores</button
+            ><br />
             <br />
+
+            <button
+              routerLink="/almacen"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="btn btn-success me-4"
+              type="button"
+            >
+              Consultar Almacén</button
+            ><br />
             <br />
-            <a href="#" class="btn btn-success">Consultar Almacén</a>
-            <br />
-            <br />
-            <a href="#" class="btn btn-success">Agregar Enmpleados</a>
+            <button
+              routerLink="/empleados"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="btn btn-success me-4"
+              type="button"
+            >
+              Agregar Empleados
+            </button>
           </div>
           <div class="card-footer text-muted">Sazón Vegano</div>
         </div>

@@ -37,7 +37,16 @@
             <input type="password" />
           </div>
         </div>
-        <a href="#" class="btn btn-success">INICIAR SESIÓN</a>
+        <button
+          routerLink="/main"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="btn btn-success me-4"
+          type="button"
+        >
+          INICIAR SESIÓN
+        </button>
+
         <br /><br />
       </table>
     </div>

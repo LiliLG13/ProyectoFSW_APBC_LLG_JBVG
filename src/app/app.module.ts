@@ -11,6 +11,9 @@ import { EmpleadosComponent } from './empleados/empleados.component';
 import { MainComponent } from './main/main.component';
 import { AlmacenComponent } from './almacen/almacen.component';
 import { FacturaComponent } from './factura/factura.component';
+import { MainCajeroComponent } from './main-cajero/main-cajero.component';
+import { MainMeseroComponent } from './main-mesero/main-mesero.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { FacturaComponent } from './factura/factura.component';
     EmpleadosComponent,
     MainComponent,
     AlmacenComponent,
-    FacturaComponent
+    FacturaComponent,
+    MainCajeroComponent,
+    MainMeseroComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,

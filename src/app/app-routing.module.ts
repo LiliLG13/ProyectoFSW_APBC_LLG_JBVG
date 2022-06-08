@@ -11,7 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { OrdenesComponent } from './ordenes/ordenes.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
-
+import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'main', component: MainComponent },
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'pedidos', component: PedidosComponent },
   { path: 'factura', component: FacturaComponent },
   { path: 'empleados', component: EmpleadosComponent },
+  { path: 'verempleados', component: VerEmpleadosComponent },
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'almacen', component: AlmacenComponent },
   { path: '**', redirectTo: '' },

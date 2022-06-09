@@ -1,19 +1,11 @@
 import { Injectable } from '@angular/core';
+import { datosLogin } from '../extra/SazonVegano.interfaces';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceLoginService {
-  datosLogin = {
-    Usuario: '',
-    Contraeña: '',
-    puesto: '',
-  };
-  constructor() {}
-  guardarDatosLogin(datosLogin: any) {
-    this.datosLogin = datosLogin;
-  }
-  get obtenerDatos() {
-    return this.datosLogin;
-  }
+  constructor(private http: HttpClient) {}
 }

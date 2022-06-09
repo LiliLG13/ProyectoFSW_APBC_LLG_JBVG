@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ServiceEmpleadosService {
-  constructor(private emple: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   //  obtenerInfoMenu(): Observable<datosEmpleados[]> {
-  //   return this.emple.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
+  //   return this.http.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
   //  }
 }

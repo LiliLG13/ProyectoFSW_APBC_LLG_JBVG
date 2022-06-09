@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServiceVerEmpleService {
-  constructor(private emple: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   obtenerInfoEmpleadosVer(): Observable<datosVerEmpleados[]> {
-    return this.emple.get<datosVerEmpleados[]>(`http://localhost:3050/verempleados`);
+    return this.http.get<datosVerEmpleados[]>(`http://localhost:3050/verempleados`);
   }
 }

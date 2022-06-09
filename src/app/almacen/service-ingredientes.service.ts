@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ServiceIngredientesService {
-  constructor(private ingre: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   obtenerInfoAlmacen(): Observable<datosIngredientes[]> {
-    return this.ingre.get<datosIngredientes[]>(`http://localhost:3050/almacen`);
+    return this. http.get<datosIngredientes[]>(`http://localhost:3050/almacen`);
   }
 }

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ServiceProveedoresService {
-  constructor(private prov: HttpClient) {}
+  constructor(private http: HttpClient) {}
   obtenerInfoProv(): Observable<datosProveedor[]> {
-    return this.prov.get<datosProveedor[]>(`http://localhost:3050/proveedores`);
+    return this.http.get<datosProveedor[]>(`http://localhost:3050/proveedores`);
   }
 }

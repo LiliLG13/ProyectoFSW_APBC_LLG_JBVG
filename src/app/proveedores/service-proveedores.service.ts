@@ -1,23 +1,13 @@
 import { Injectable } from '@angular/core';
-
+import { datosProveedor } from '../extra/SazonVegano.interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ServiceProveedoresService {
-  datosProveedor = {
-    ID_Proveedores: 0,
-    nombreEmpresa: '',
-    telefono: '',
-    direccion: '',
-    cuidad: '',
-    estado: '',
-    pais: '',
-  };
-  constructor() {}
-  guardarDatosProveedor(datosProveedor: any) {
-    this.datosProveedor = datosProveedor;
-  }
-  get obtenerDatos() {
-    return this.datosProveedor;
+  constructor(private prov: HttpClient) {}
+  obtenerInfoProv(): Observable<datosProveedor[]> {
+    return this.prov.get<datosProveedor[]>(`http://localhost:3050/proveedores`);
   }
 }

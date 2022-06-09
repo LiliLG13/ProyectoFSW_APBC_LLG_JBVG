@@ -1,27 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+//import { datosEmpleados } from '../extra/SazonVegano.interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceEmpleadosService {
-  datosEmpleados = {
-    ID_Empleados: 0,
-    nombre: '',
-    fechaNacimiento: '',
-    fechaIngreso: '',
-    estadoCivil: '',
-    direccion: '',
-    telefono: '',
-    correo: '',
-    puesto: '',
-    horasTrabajo: '',
-    sexo: '',
-  };
-  constructor() {}
-  guardarDatosEmpleado(datosEmpleados: any) {
-    this.datosEmpleados = datosEmpleados;
-  }
-  get obtenerDatos() {
-    return this.datosEmpleados;
-  }
+  constructor(private emple: HttpClient) {}
+
+  //  obtenerInfoMenu(): Observable<datosEmpleados[]> {
+  //   return this.emple.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
+  //  }
 }

@@ -145,31 +145,40 @@
           </symbol>
         </svg>
         <br /><br />
-
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-          <svg
-            class="bi flex-shrink-0 me-2"
-            width="24"
-            height="24"
-            role="img"
-            aria-label="Success:"
+        <div *ngIf="ordenExitosa">
+          <div
+            class="alert alert-success d-flex align-items-center"
+            role="alert"
           >
-            <use xlink:href="#check-circle-fill" />
-          </svg>
-          <div>Orden agregada de manera exitosa</div>
+            <svg
+              class="bi flex-shrink-0 me-2"
+              width="24"
+              height="24"
+              role="img"
+              aria-label="Success:"
+            >
+              <use xlink:href="#check-circle-fill" />
+            </svg>
+            <div>Orden agregada de manera exitosa</div>
+          </div>
         </div>
 
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
-          <svg
-            class="bi flex-shrink-0 me-2"
-            width="24"
-            height="24"
-            role="img"
-            aria-label="Danger:"
+        <div *ngIf="hayError">
+          <div
+            class="alert alert-danger d-flex align-items-center"
+            role="alert"
           >
-            <use xlink:href="#exclamation-triangle-fill" />
-          </svg>
-          <div>La orden no pudo ser realizada</div>
+            <svg
+              class="bi flex-shrink-0 me-2"
+              width="24"
+              height="24"
+              role="img"
+              aria-label="Danger:"
+            >
+              <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            <div>La orden no pudo ser realizada</div>
+          </div>
         </div>
 
         <br /><br />

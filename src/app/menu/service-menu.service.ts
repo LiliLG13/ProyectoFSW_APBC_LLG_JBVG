@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { datosMenu } from '../extra/SazonVegano.interfaces';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceMenuService {
-  datosMenu = {
-    ID_Platillo: 0,
-    ID_Categoria: '',
-    nombre: '',
-    descripcion: '',
-    precio: '',
-  };
-  constructor() {}
-  guardarDatosProveedor(datosMenu: any) {
-    this.datosMenu = datosMenu;
-  }
-  get obtenerDatos() {
-    return this.datosMenu;
+
+  constructor(private menu: HttpClient ) {}
+
+  obtenerInfoMenu(): Observable<datosMenu[]> {
+    return this.menu.get<datosMenu[]>(`http://localhost:3050/menu`);
   }
 }

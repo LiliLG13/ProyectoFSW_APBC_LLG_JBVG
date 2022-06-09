@@ -15,6 +15,7 @@ import { MainCajeroComponent } from './main-cajero/main-cajero.component';
 import { MainMeseroComponent } from './main-mesero/main-mesero.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,13 +5,14 @@
         border="5"
         style="background-color: rgb(200, 239, 216)"
         class="align-items-center"
-      ><div class="card-header">
-        <img
-          src="https://media.gettyimages.com/vectors/vegetable-grunge-design-vector-id166081642?s=2048x2048"
-          height="150"
-          width="1000"
-        />
-      </div>
+      >
+        <div class="card-header">
+          <img
+            src="https://media.gettyimages.com/vectors/vegetable-grunge-design-vector-id166081642?s=2048x2048"
+            height="150"
+            width="1000"
+          />
+        </div>
         <img
           src="https://http2.mlstatic.com/D_NQ_NP_711092-MLM41954221712_052020-O.jpg"
           width="50"
@@ -26,7 +27,13 @@
           class="rounded-circle"
         />
         <h5>PROVEEDORES</h5>
-
+        <button
+          type="submit"
+          (click)="buscarProveedores()"
+          class="btn btn-large btn-block btn-primary"
+        >
+          Actualizar
+        </button>
         <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -40,32 +47,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+            <tr *ngFor="let prov of proveedor">
+              <th scope="row">{{ prov }}</th>
+              <td>{{ prov }}</td>
+              <td>{{ prov }}</td>
+              <td>{{ prov }}</td>
+              <td>{{ prov }}</td>
+              <td>{{ prov }}</td>
+              <td>{{ prov }}</td>
             </tr>
           </tbody>
         </table>

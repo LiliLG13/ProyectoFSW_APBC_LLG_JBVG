@@ -11,7 +11,7 @@ export class ServiceMenuService {
 
   constructor(private menu: HttpClient ) {}
 
-  obtenerInfoMenu(): Observable<datosMenu[]> {
+  obtenerInfoMenu(idCategoria:number): Observable<datosMenu[]> {
     return this.menu.get<datosMenu[]>(`http://localhost:3050/menu`);
   }
 }

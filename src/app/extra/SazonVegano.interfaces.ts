@@ -1,7 +1,7 @@
 export interface datosVerEmpleados {
-  ID_Empleados: 0;
+  ID_Empleados: '';
   nombre: '';
-  fechaNacimiento: Date;
+  fechaNacimiento: '';
   fechaIngreso: '';
   estadoCivil: '';
   direccion: '';
@@ -13,7 +13,7 @@ export interface datosVerEmpleados {
 }
 
 export interface datosIngredientes {
-  ID_Ingrediente: 0;
+  ID_Ingrediente: '';
   nombre: '';
   marca: '';
   caducidad: '';
@@ -22,15 +22,15 @@ export interface datosIngredientes {
 }
 
 export interface datosMenu {
-  ID_Platillo: 0;
-  ID_Categoria: 0;
-  nombre: '';
+  ID_Categoria: '';
+  nombreCategoria: '';
   descripcion: '';
+  nombrePlatillo: '';
   precio: '';
 }
 
 export interface datosProveedor {
-  ID_Proveedores: 0;
+  ID_Proveedores: '';
   nombreEmpresa: '';
   telefono: '';
   direccion: '';
@@ -46,9 +46,9 @@ export interface datosLogin {
 }
 
 export interface datosFactura {
-  ID_factura: 0;
-  ID_Cliente: 0;
-  ID_Orden: 0;
+  ID_factura: '';
+  ID_Cliente: '';
+  ID_Orden: '';
   fecha: '';
   Importe: '';
   tipoPago: '';
@@ -58,14 +58,14 @@ export interface datosFactura {
 export interface datosOrdenes {
   orden: [
     {
-      ID_Platillo: 0;
+      ID_Platillo: '';
       ID_Categoria: '';
       nombre: '';
       descripcion: '';
       precio: '';
     }
   ];
-  ID_Orden: 0;
+  ID_Orden: '';
   ID_Mesero: '';
   fecha: '';
   fechaIngreso: '';
@@ -74,7 +74,7 @@ export interface datosOrdenes {
 }
 
 export interface datospedidoOrdenes {
-  ID_Orden: 0;
+  ID_Orden: '';
   ID_Mesero: '';
   fecha: '';
   fechaIngreso: '';

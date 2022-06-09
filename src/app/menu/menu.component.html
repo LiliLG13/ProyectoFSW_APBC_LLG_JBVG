@@ -27,6 +27,9 @@
           class="rounded-circle"
         />
         <h1>MENÚ</h1>
+        <button type="submit"(click)="buscarPlatillos(1)" class="btn btn-large btn-block btn-primary">
+          Actualizar
+        </button>
         <div class="container">
           <div class="row justify-content-center">
             <div class="row">
@@ -45,22 +48,15 @@
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
+                    <div class="row" *ngFor="let plato of platillos">
                       <div class="col-8">
-                        <li class="list-group-item">Comida</li>
+                        <li class="list-group-item">{{ plato.nombrePlatillo }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">$100</li>
+                        <li class="list-group-item">${{ plato.precio }}</li>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-8">
-                        <li class="list-group-item">Comida</li>
-                      </div>
-                      <div class="col-4">
-                        <li class="list-group-item">$100</li>
-                      </div>
-                    </div>
+                    
                   </ul>
                 </div>
               </div>
@@ -79,14 +75,6 @@
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
-                      <div class="col-8">
-                        <li class="list-group-item">Comida</li>
-                      </div>
-                      <div class="col-4">
-                        <li class="list-group-item">$100</li>
-                      </div>
-                    </div>
                     <div class="row">
                       <div class="col-8">
                         <li class="list-group-item">Comida</li>
@@ -124,14 +112,6 @@
                         <li class="list-group-item">$100</li>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-8">
-                        <li class="list-group-item">Comida</li>
-                      </div>
-                      <div class="col-4">
-                        <li class="list-group-item">$100</li>
-                      </div>
-                    </div>
                   </ul>
                 </div>
               </div>
@@ -150,14 +130,6 @@
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
-                      <div class="col-8">
-                        <li class="list-group-item">Comida</li>
-                      </div>
-                      <div class="col-4">
-                        <li class="list-group-item">$100</li>
-                      </div>
-                    </div>
                     <div class="row">
                       <div class="col-8">
                         <li class="list-group-item">Comida</li>
@@ -186,14 +158,6 @@
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
-                      <div class="col-8">
-                        <li class="list-group-item">Comida</li>
-                      </div>
-                      <div class="col-4">
-                        <li class="list-group-item">$100</li>
-                      </div>
-                    </div>
                     <div class="row">
                       <div class="col-8">
                         <li class="list-group-item">Comida</li>

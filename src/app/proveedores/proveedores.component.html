@@ -29,7 +29,7 @@
         <h5>PROVEEDORES</h5>
         <button
           type="submit"
-          (click)="buscarProveedores()"
+          ((click))="buscarProveedores()"
           class="btn btn-large btn-block btn-primary"
         >
           Actualizar
@@ -48,13 +48,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let prov of proveedor">
-              <th scope="row">{{ prov }}</th>
-              <td>{{ prov }}</td>
-              <td>{{ prov }}</td>
-              <td>{{ prov }}</td>
-              <td>{{ prov }}</td>
-              <td>{{ prov }}</td>
-              <td>{{ prov }}</td>
+              <th scope="row">{{ prov.ID_Proveedores }}</th>
+              <td>{{ prov.nombreEmpresa }}</td>
+              <td>{{ prov.telefono }}</td>
+              <td>{{ prov.direccion }}</td>
+              <td>{{ prov.cuidad }}</td>
+              <td>{{ prov.estado }}</td>
+              <td>{{ prov.pais }}</td>
             </tr>
           </tbody>
         </table>

@@ -40,7 +40,7 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">#ID</th>
-              <th scope="col">Nombre de empresa</th>
+              <th scope="col">Nombre</th>
               <th scope="col">Fecha de nacimiento</th>
               <th scope="col">Fecha de ingreso</th>
               <th scope="col">Estado civil</th>
@@ -49,7 +49,6 @@
               <th scope="col">Correo</th>
               <th scope="col">Puesto</th>
               <th scope="col">Hora de trabajo</th>
-              <th scope="col">Teléfono</th>
               <th scope="col">Sexo</th>
               <th scope="col">Usuario</th>
               <th scope="col">Contraseña</th>
@@ -57,18 +56,17 @@
           </thead>
           <tbody>
             <tr *ngFor="let emple of empleados">
-              <th scope="row">{{ emple }}</th>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
+              <th scope="row">{{ emple.ID_Empleados }}</th>
+              <td>{{ emple.nombre }}</td>
+              <td>{{ emple.fechaNacimiento }}</td>
+              <td>{{ emple.fechaIngreso.split("T")[0]  }}</td>
+              <td>{{ emple.estadoCivil.split("T")[0]  }}</td>
+              <td>{{ emple.direccion }}</td>
+              <td>{{ emple.telefono }}</td>
+              <td>{{ emple.correo }}</td>
+              <td>{{ emple.puesto }}</td>
+              <td>{{ emple.horasTrabajo }}</td>
+              <td>{{ emple.sexo }}</td>
               <td>{{ emple }}</td>
               <td>{{ emple }}</td>
             </tr>

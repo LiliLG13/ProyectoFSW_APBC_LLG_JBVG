@@ -28,24 +28,22 @@
           class="rounded-circle"
         />
         <h1>ORDENES</h1>
+
+
         <div class="col-12">
-          <label
-            class=""
-            for="inputGroupSelect01"
-            style="background-color: rgb(197, 168, 105)"
-            >Entrada</label
-          >
-          <select class="custom-select" id="inputGroupSelect01">
+        
+
+          <select class="custom-select" id="plato">
             <option selected>OPCIONES...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+              <option *ngFor="let platillo of orden; let i = index" value=i+1>{{ platillo.nombre }}</option>
           </select>
-          <input type="number" />
-          <button class="btn btn-success">+</button>
-          <button class="btn btn-danger">-</button>
-        </div>
+        <input type="number" placeholder="0" />
+        <button class="btn btn-success">+</button>
+        <button class="btn btn-danger">-</button>
+      </div>
+
         <br />
+        <!-- 
         <div class="col-12">
           <label
             for="inputGroupSelect01"
@@ -113,7 +111,7 @@
           <button class="btn btn-success">+</button>
           <button class="btn btn-danger">-</button>
         </div>
-
+ -->
         <button
           routerLink="/orden"
           routerLinkActive="active"

@@ -40,78 +40,84 @@
         <br />
         <div class="container">
           <div class="row">
-            <div class="col">
-              <div class="row">
+            <div
+              class="col"
+              *ngFor="let fact of datosFactura; first as isFirst"
+            >
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>No. factura:</h6>
                 </div>
-                <div class="col">001</div>
+                <div class="col">{{ fact.ID_Orden }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>No. folio:</h6>
                 </div>
-                <div class="col">001</div>
+                <div class="col">2531</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Fecha:</h6>
                 </div>
-                <div class="col">19/02/2022</div>
+                <div class="col">
+                  {{ fact.fecha.split("T")[0] }}
+                </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>No. pedido:</h6>
                 </div>
-                <div class="col">001</div>
+                <div class="col">{{ fact.ID_Orden }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Vencimiento:</h6>
                 </div>
-                <div class="col">19/02/2026</div>
+                <div class="col">{{ fact.fecha.split("T")[0] }}</div>
               </div>
             </div>
-            <div class="col">
+
+            <div class="col" *ngFor="let cliente of datosCliente">
               <h6>Envíar a:</h6>
               <div class="row">
                 <div class="col">
                   <h6>Nombre:</h6>
                 </div>
-                <div class="col">liliana lopez gro</div>
+                <div class="col">{{ cliente.nombre }}</div>
               </div>
               <div class="row">
                 <div class="col">
                   <h6>Dirección:</h6>
                 </div>
-                <div class="col">pokemon home 13</div>
+                <div class="col">{{ cliente.direccion }}</div>
               </div>
               <div class="row">
                 <div class="col">
                   <h6>Correo:</h6>
                 </div>
-                <div class="col">lily@gmail.com</div>
+                <div class="col">{{ cliente.correo }}</div>
               </div>
             </div>
-            <div class="col">
+            <div class="col" *ngFor="let cliente of datosCliente">
               <h6>Facturar a:</h6>
               <div class="row">
                 <div class="col">
                   <h6>Nombre:</h6>
                 </div>
-                <div class="col">liliana lopez gro</div>
+                <div class="col">{{ cliente.nombre }}</div>
               </div>
               <div class="row">
                 <div class="col">
                   <h6>Dirección:</h6>
                 </div>
-                <div class="col">pokemon home 19</div>
+                <div class="col">{{ cliente.direccion }}</div>
               </div>
               <div class="row">
                 <div class="col">
                   <h6>Correo:</h6>
                 </div>
-                <div class="col">lili13@gmail.com</div>
+                <div class="col">{{ cliente.correo }}</div>
               </div>
             </div>
           </div>
@@ -120,66 +126,55 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Cantidad</th>
-                <th scope="col">ID</th>
+                <th scope="col">nombre Platillo</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Precio unitario</th>
                 <th scope="col">Importe</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>Larry</td>
+              <tr *ngFor="let fact of datosFactura">
+                <td>{{ fact.cantidad }}</td>
+                <td>{{ fact.nombrePlato }}</td>
+                <td>{{ fact.descripcion }}</td>
+                <td>{{ fact.precio }}</td>
+                <td>{{ fact.subtotal }}</td>
               </tr>
             </tbody>
           </table>
           <br />
           <div class="row justify-content-end">
-            <div class="col-4">
-              <div class="row">
+            <div
+              class="col-4"
+              *ngFor="let fact of datosFactura; first as isFirst"
+            >
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Subtotal:</h6>
                 </div>
-                <div class="col">$00.00</div>
+                <div class="col">${{ fact.totalPagar }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Descuento:</h6>
                 </div>
                 <div class="col">$00.00</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>IVA:</h6>
                 </div>
-                <div class="col">00.00</div>
+                <div class="col">${{ fact.totalPagar }}*0.16</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Total:</h6>
                 </div>
-                <div class="col">$00.00</div>
+                <div class="col">${{ fact.totalPagar }}*1.16</div>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-end">
             <div class="col-6">
               <h6>Firma: ____________________________</h6>
             </div>

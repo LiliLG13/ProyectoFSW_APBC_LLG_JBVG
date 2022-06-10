@@ -28,13 +28,7 @@
           class="rounded-circle"
         />
         <h5>Empleados</h5>
-        <button
-          type="submit"
-          (click)="buscarEmpleados()"
-          class="btn btn-large btn-block btn-primary"
-        >
-          Actualizar
-        </button>
+
 
         <table class="table">
           <thead class="thead-dark">
@@ -56,19 +50,19 @@
           </thead>
           <tbody>
             <tr *ngFor="let emple of empleados">
-              <th scope="row">{{ emple.ID_Empleados }}</th>
+              <th scope="row">{{ emple.ID_Empleado }}</th>
               <td>{{ emple.nombre }}</td>
-              <td>{{ emple.fechaNacimiento }}</td>
+              <td>{{ emple.fechaNacimiento.split("T")[0] }}</td>
               <td>{{ emple.fechaIngreso.split("T")[0]  }}</td>
-              <td>{{ emple.estadoCivil.split("T")[0]  }}</td>
+              <td>{{ emple.estadoCivil  }}</td>
               <td>{{ emple.direccion }}</td>
               <td>{{ emple.telefono }}</td>
               <td>{{ emple.correo }}</td>
               <td>{{ emple.puesto }}</td>
               <td>{{ emple.horasTrabajo }}</td>
               <td>{{ emple.sexo }}</td>
-              <td>{{ emple }}</td>
-              <td>{{ emple }}</td>
+              <td>{{ emple.usuario }}</td>
+              <td>{{ emple.pass }}</td>
             </tr>
           </tbody>
         </table>

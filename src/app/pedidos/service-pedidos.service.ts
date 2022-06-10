@@ -8,5 +8,10 @@ import { datospedidoOrdenes } from '../extra/SazonVegano.interfaces';
 export class ServicePedidosService {
 
   constructor(private http: HttpClient) {}
-
+ 
+  obtenerInfoOrden(): Observable<datospedidoOrdenes[]> {
+    return this.http.get<datospedidoOrdenes[]>(
+      `http://localhost:3050/pedidos`
+    );
+  }
 }

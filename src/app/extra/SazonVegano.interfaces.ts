@@ -1,5 +1,5 @@
 export interface datosVerEmpleados {
-  ID_Empleados: '';
+  ID_Empleado: '';
   nombre: '';
   fechaNacimiento: '';
   fechaIngreso: '';
@@ -10,6 +10,8 @@ export interface datosVerEmpleados {
   puesto: '';
   horasTrabajo: '';
   sexo: '';
+  usuario: '';
+  pass: '';
 }
 
 export interface datosIngredientes {
@@ -22,19 +24,22 @@ export interface datosIngredientes {
 }
 
 export interface datosMenu {
-  ID_Categoria: '';
-  nombreCategoria: '';
-  descripcion: '';
-  nombrePlatillo: '';
+  nombre: '';
   precio: '';
 }
 
+export interface datosCategoria {
+  ID_Categoria: '';
+  nombreCategoria: '';
+  descripcion: '';
+}
+
 export interface datosProveedor {
-  ID_Proveedores: '';
+  ID_Proveedor: '';
   nombreEmpresa: '';
   telefono: '';
   direccion: '';
-  cuidad: '';
+  ciudad: '';
   estado: '';
   pais: '';
 }
@@ -45,39 +50,40 @@ export interface datosLogin {
   puesto: '';
 }
 
-export interface datosFactura {
-  ID_factura: '';
-  ID_Cliente: '';
-  ID_Orden: '';
+export interface datosFacturaCliente {
+  nombre: '';
+  direccion: '';
+  correo: '';
+}
+export interface datosFacturaOrden {
+  nombrePlato: '';
+  descripcion: '';
+  precio: '';
+  cantidad: '';
+  subtotal: '';
   fecha: '';
-  Importe: '';
-  tipoPago: '';
-  folio: '';
+  totalPagar: 0;
+  ID_Orden: '';
 }
 
 export interface datosOrdenes {
   orden: [
     {
-      ID_Platillo: '';
-      ID_Categoria: '';
       nombre: '';
-      descripcion: '';
-      precio: '';
+      cantidad: '';
     }
   ];
   ID_Orden: '';
   ID_Mesero: '';
   fecha: '';
-  fechaIngreso: '';
   mesa: '';
   totalPagar: '';
 }
 
 export interface datospedidoOrdenes {
   ID_Orden: '';
-  ID_Mesero: '';
   fecha: '';
-  fechaIngreso: '';
+  estatus: '';
   mesa: '';
   totalPagar: '';
 }

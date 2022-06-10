@@ -27,9 +27,7 @@
           class="rounded-circle"
         />
         <h1>MENÚ</h1>
-        <button type="submit"(click)="buscarPlatillos(1)" class="btn btn-large btn-block btn-primary">
-          Actualizar
-        </button>
+
         <div class="container">
           <div class="row justify-content-center">
             <div class="row">
@@ -39,21 +37,21 @@
                     class="card-img-top"
                     src="https://cdn0.bodas.com.mx/article-vendor-o/4568/3_2/1280/jpg/fotografia-17_5_164568.webp"
                     alt="Card image cap"
+                    (click)="buscarPlatillosEntrada()"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Entrada</h5>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      Aperitivo antes del platillo fuerte
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row" *ngFor="let plato of platillos">
+                    <div class="row" *ngFor="let platos of platosE">
                       <div class="col-8">
-                        <li class="list-group-item">{{ plato.nombrePlatillo }}</li>
+                        <li class="list-group-item">{{ platos.nombre }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">${{ plato.precio }}</li>
+                        <li class="list-group-item">${{ platos.precio }}</li>
                       </div>
                     </div>
                     
@@ -66,21 +64,21 @@
                     class="card-img-top"
                     src="https://cdn2.cocinadelirante.com/sites/default/files/images/2019/12/recetas-veganas-faciles-y-ricas.jpg"
                     alt="Card image cap"
+                    (click)="buscarPlatillosFuerte()"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Platillos</h5>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      Platillo principal pedido de la casa
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
+                    <div class="row" *ngFor="let plato of platosF">
                       <div class="col-8">
-                        <li class="list-group-item">Comida</li>
+                        <li class="list-group-item">{{ plato.nombre }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">$100</li>
+                        <li class="list-group-item">${{ plato.precio }}</li>
                       </div>
                     </div>
                   </ul>
@@ -95,21 +93,21 @@
                     class="card-img-top"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8I3LpTtlvQAAwlRg9_By1TKzpdsicbrEG8w&usqp=CAU"
                     alt="Card image cap"
+                    (click)=" buscarPlatillosinfantil() "
                   />
                   <div class="card-body">
                     <h5 class="card-title">Infantiles</h5>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      Platillo especial que agrade el paladar de los niños
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
+                    <div class="row" *ngFor="let infantil of platosI">
                       <div class="col-8">
-                        <li class="list-group-item">Comida</li>
+                        <li class="list-group-item">{{ infantil.nombre }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">$100</li>
+                        <li class="list-group-item">${{ infantil.precio }}</li>
                       </div>
                     </div>
                   </ul>
@@ -121,21 +119,21 @@
                     class="card-img-top"
                     src="https://cdn.sportadictos.com/files/2017/06/Bebidas-antioxidantes.jpg"
                     alt="Card image cap"
+                    (click)=" buscarPlatillosDrinks() "
                   />
                   <div class="card-body">
                     <h5 class="card-title">Bebidas</h5>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      Bebidas calientes/refrescantes
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
+                    <div class="row" *ngFor="let bebe of platosD">
                       <div class="col-8">
-                        <li class="list-group-item">Comida</li>
+                        <li class="list-group-item">{{ bebe.nombre }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">$100</li>
+                        <li class="list-group-item">${{ bebe.precio }}</li>
                       </div>
                     </div>
                   </ul>
@@ -149,21 +147,21 @@
                     class="card-img-top"
                     src="https://placeralplato.com/files/2015/11/Postre-vegano-640x480.jpg?width=1200&enable=upscale"
                     alt="Card image cap"
+                    (click)="buscarPlatillosPostre()"
                   />
                   <div class="card-body">
                     <h5 class="card-title">Postres</h5>
                     <p class="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      Aperitivo después del plato fuerte
                     </p>
                   </div>
                   <ul class="list-group list-group-flush">
-                    <div class="row">
+                    <div class="row" *ngFor="let postre of platosP">
                       <div class="col-8">
-                        <li class="list-group-item">Comida</li>
+                        <li class="list-group-item">{{ postre.nombre }}</li>
                       </div>
                       <div class="col-4">
-                        <li class="list-group-item">$100</li>
+                        <li class="list-group-item">${{ postre.precio }}</li>
                       </div>
                     </div>
                   </ul>

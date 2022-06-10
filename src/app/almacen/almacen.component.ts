@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { datosIngredientes } from '../extra/SazonVegano.interfaces';
 import { ServiceIngredientesService } from './service-ingredientes.service';
@@ -14,6 +15,7 @@ export class AlmacenComponent implements OnInit {
   ingredientes:  datosIngredientes[]=[];
  
   ngOnInit(): void {
+    this.buscarIngredientes()
   }
   buscarIngredientes() {
     this.hayError = false;

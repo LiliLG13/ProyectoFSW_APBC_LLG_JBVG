@@ -12,7 +12,9 @@ export class ProveedoresComponent implements OnInit {
   prov: string = '';
   hayError: boolean = false;
   proveedor: datosProveedor[] = [];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buscarProveedores()
+  }
   buscarProveedores() {
     this.hayError = false;
     this.httpServ.obtenerInfoProv().subscribe({

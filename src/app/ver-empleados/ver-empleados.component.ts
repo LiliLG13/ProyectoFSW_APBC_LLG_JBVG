@@ -12,7 +12,9 @@ export class VerEmpleadosComponent implements OnInit {
   emple: string = '';
   hayError: boolean = false;
   empleados: datosVerEmpleados[] = [];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buscarEmpleados()
+  }
 
   buscarEmpleados() {
     this.hayError = false;

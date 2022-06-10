@@ -1,106 +1,106 @@
 export interface datosVerEmpleados {
-  ID_Empleado: '';
-  nombre: '';
-  fechaNacimiento: '';
-  fechaIngreso: '';
-  estadoCivil: '';
-  direccion: '';
-  telefono: '';
-  correo: '';
-  puesto: '';
-  horasTrabajo: '';
-  sexo: '';
-  usuario: '';
-  pass: '';
+  ID_Empleado: string;
+  nombre: string;
+  fechaNacimiento: string;
+  fechaIngreso: string;
+  estadoCivil: string;
+  direccion: string;
+  telefono: string;
+  correo: string;
+  puesto: string;
+  horasTrabajo: string;
+  sexo: string;
+  usuario: string;
+  pass: string;
 }
 export interface tipoEmp{
-  puesto:'',
-  contraseña: ''
+  puesto:string,
+  contraseña: string
 }
 export interface datosEmpleados {
-  nombre: '';
-  fechaNacimiento: '';
-  fechaIngreso: '';
-  estadoCivil: '';
-  direccion: '';
-  telefono: '';
-  correo: '';
-  puesto: '';
-  horasTrabajo: '';
-  sexo: '';
-  usuario: '';
-  contraseña: '';
+  nombre: string;
+  fechaNacimiento: string;
+  fechaIngreso: string;
+  estadoCivil: string;
+  direccion: string;
+  telefono: string;
+  correo: string;
+  puesto: string;
+  horasTrabajo: string;
+  sexo: string;
+  usuario: string;
+  pass: string;
 }
 
 export interface datosIngredientes {
-  ID_Ingrediente: '';
-  nombre: '';
-  marca: '';
-  caducidad: '';
-  existencia: '';
-  costoCompra: '';
+  ID_Ingrediente: string;
+  nombre: string;
+  marca: string;
+  caducidad: string;
+  existencia: string;
+  costoCompra: string;
 }
 
 export interface datosMenu {
-  nombre: '';
-  precio: '';
+  nombre: string;
+  precio: string;
 }
 
 export interface datosCategoria {
-  ID_Categoria: '';
-  nombreCategoria: '';
-  descripcion: '';
+  ID_Categoria: string;
+  nombreCategoria: string;
+  descripcion: string;
 }
 
 export interface datosProveedor {
-  ID_Proveedor: '';
-  nombreEmpresa: '';
-  telefono: '';
-  direccion: '';
-  ciudad: '';
-  estado: '';
-  pais: '';
+  ID_Proveedor: string;
+  nombreEmpresa: string;
+  telefono: string;
+  direccion: string;
+  ciudad: string;
+  estado: string;
+  pais: string;
 }
 
 export interface datosLogin {
-  Usuario: '';
-  Contraeña: '';
-  puesto: '';
+  Usuario: string;
+  Contraeña: string;
+  puesto: string;
 }
 
 
 export interface datosFacturaOrden {
-  nombrePlato: '';
-  descripcion: '';
-  precio: '';
-  cantidad: '';
-  subtotal: '';
-  fecha: '';
+  nombrePlato: string;
+  descripcion: string;
+  precio: string;
+  cantidad: string;
+  subtotal: string;
+  fecha: string;
   totalPagar: 0;
-  nombre: '';
-  direccion: '';
-  correo: '';
-  idfactura: '';
+  nombre: string;
+  direccion: string;
+  correo: string;
+  idfactura: string;
 }
 
 export interface datosOrdenes {
   orden: [
     {
-      nombre: '';
-      cantidad: '';
+      nombre: string;
+      cantidad: string;
     }
   ];
-  ID_Orden: '';
-  ID_Mesero: '';
-  fecha: '';
-  mesa: '';
-  totalPagar: '';
+  ID_Orden: string;
+  ID_Mesero: string;
+  fecha: string;
+  mesa: string;
+  totalPagar: string;
 }
 
 export interface datospedidoOrdenes {
-  ID_Orden: '';
-  fecha: '';
-  estatus: '';
-  mesa: '';
-  totalPagar: '';
+  ID_Orden: string;
+  fecha: string;
+  estatus: string;
+  mesa: string;
+  totalPagar: string;
 }

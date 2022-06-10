@@ -30,80 +30,81 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col">ID:</div>
-            <div class="col">
-             
-            </div>
+            <div class="col"></div>
             <div class="col">Nombre:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.nombre" />
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Fecha de nacimiento:</div>
             <div class="col">
-              <input type="date" />
+              <input type="text" [(ngModel)]="empleado.fechaNacimiento" placeholder="mm-dd-aaaa"/>
             </div>
             <div class="col">Fecha Ingreso:</div>
             <div class="col">
-              <input type="date" />
+              <input type="text" [(ngModel)]="empleado.fechaIngreso" placeholder="mm-dd-aaaa"/>
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Estado civil:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.estadoCivil" placeholder="Divorciado, Casado, Soltero"/>
             </div>
             <div class="col">Dirección:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.direccion" />
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Teléfono:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.telefono" placeholder="000-000-0000"/>
             </div>
             <div class="col">Correo:</div>
             <div class="col">
-              <input type="email" />
+              <input type="email" [(ngModel)]="empleado.correo" placeholder="aa@aa.com" />
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Puesto:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.puesto" placeholder="Gerente,Chef,Cajero,Mesero"/>
             </div>
             <div class="col">Horas de trabajo:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.horasTrabajo" placeholder="1-8"/>
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Sexo:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.sexo" placeholder="F, M"/>
             </div>
             <div class="col">Usuario:</div>
             <div class="col">
-              <input type="text" />
+              <input type="text" [(ngModel)]="empleado.usuario" />
             </div>
           </div>
           <br />
           <div class="row justify-content-center">
             <div class="col">Contraseña:</div>
             <div class="col">
-              <input type="password" />
+              <input type="password" [(ngModel)]="empleado.pass" />
             </div>
             <div class="col"></div>
             <div class="col"></div>
           </div>
           <br /><br />
-          <button class="btn btn-success">Agregar</button>
+
+          <button class="btn btn-success" (click)="agregarEmpleado()">
+            Agregar
+          </button>
           <br /><br />
           <button
             routerLink="/main"

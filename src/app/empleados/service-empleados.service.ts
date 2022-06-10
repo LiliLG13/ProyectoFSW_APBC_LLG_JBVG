@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class ServiceEmpleadosService {
   constructor(private http: HttpClient) {}
 
-   obtenerInfoNuevoEmpleado(): Observable<datosEmpleados[]> {
-     return this.http.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
+   agregarInfoNuevoEmpleado(emp: datosEmpleados): Observable<datosEmpleados[]> {
+      console.log(emp)
+     return this.http.post<datosEmpleados[]>(`http://localhost:3050/empleados/`, emp);
     }
 }

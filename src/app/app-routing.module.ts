@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'verempleados', component: VerEmpleadosComponent },
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'almacen', component: AlmacenComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '' },
 ];
 

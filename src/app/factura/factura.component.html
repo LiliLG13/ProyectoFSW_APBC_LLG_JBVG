@@ -48,7 +48,7 @@
                 <div class="col">
                   <h6>No. factura:</h6>
                 </div>
-                <div class="col">{{ fact.ID_Orden }}</div>
+                <div class="col">{{ fact.idfactura }}</div>
               </div>
               <div class="row" *ngIf="isFirst">
                 <div class="col">
@@ -68,7 +68,7 @@
                 <div class="col">
                   <h6>No. pedido:</h6>
                 </div>
-                <div class="col">{{ fact.ID_Orden }}</div>
+                <div class="col">{{ fact.idfactura }}</div>
               </div>
               <div class="row" *ngIf="isFirst">
                 <div class="col">
@@ -78,46 +78,52 @@
               </div>
             </div>
 
-            <div class="col" *ngFor="let cliente of datosCliente">
-              <h6>Envíar a:</h6>
-              <div class="row">
+            <div
+              class="col"
+              *ngFor="let fact of datosFactura; first as isFirst"
+            >
+              <h6 *ngIf="isFirst">Envíar a:</h6>
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Nombre:</h6>
                 </div>
-                <div class="col">{{ cliente.nombre }}</div>
+                <div class="col">{{ fact.nombre }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Dirección:</h6>
                 </div>
-                <div class="col">{{ cliente.direccion }}</div>
+                <div class="col">{{ fact.direccion }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Correo:</h6>
                 </div>
-                <div class="col">{{ cliente.correo }}</div>
+                <div class="col">{{ fact.correo }}</div>
               </div>
             </div>
-            <div class="col" *ngFor="let cliente of datosCliente">
-              <h6>Facturar a:</h6>
-              <div class="row">
+            <div
+              class="col"
+              *ngFor="let fact of datosFactura; first as isFirst"
+            >
+              <h6 *ngIf="isFirst">Facturar a:</h6>
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Nombre:</h6>
                 </div>
-                <div class="col">{{ cliente.nombre }}</div>
+                <div class="col">{{ fact.nombre }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Dirección:</h6>
                 </div>
-                <div class="col">{{ cliente.direccion }}</div>
+                <div class="col">{{ fact.direccion }}</div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Correo:</h6>
                 </div>
-                <div class="col">{{ cliente.correo }}</div>
+                <div class="col">{{ fact.correo }}</div>
               </div>
             </div>
           </div>
@@ -164,16 +170,17 @@
                 <div class="col">
                   <h6>IVA:</h6>
                 </div>
-                <div class="col">${{ fact.totalPagar }}*0.16</div>
+                <div class="col">${{ (fact.totalPagar * 0.16).toString().substring(0, (fact.totalPagar * 0.16).toString().indexOf('.')+2) }}</div>
               </div>
               <div class="row" *ngIf="isFirst">
                 <div class="col">
                   <h6>Total:</h6>
                 </div>
-                <div class="col">${{ fact.totalPagar }}*1.16</div>
+                <div class="col">${{ (fact.totalPagar * 1.16).toString().substring(0, (fact.totalPagar * 1.16).toString().indexOf('.')+2) }}</div>
               </div>
             </div>
           </div>
+          <br /><br /><br /><br /><br /><br />
           <div class="row justify-content-end">
             <div class="col-6">
               <h6>Firma: ____________________________</h6>

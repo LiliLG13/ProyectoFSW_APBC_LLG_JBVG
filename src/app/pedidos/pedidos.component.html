@@ -23,13 +23,13 @@
             <h6 class="card-title">Pago total: {{p.totalPagar}}</h6>
             <button
               routerLink="/factura"
+              (click)="abrirfactura19( p.ID_Orden)"
               routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
               class="btn btn-success me-4"
               type="button"           
             >
               Generar factura
-            </button>  <!--  (click)=`buscarFactura({{ p.ID_Orden }})` -->
+            </button> 
           </div>
         </div>
       </div>

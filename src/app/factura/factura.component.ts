@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { datosFacturaOrden } from '../extra/SazonVegano.interfaces';
-import { datosFacturaCliente } from '../extra/SazonVegano.interfaces';
 import { ServiceFacturaService } from './service-factura.service';
+import { ServicePedidosService } from '../pedidos/service-pedidos.service';
 @Component({
   selector: 'app-factura',
   templateUrl: './factura.component.html',
   styleUrls: ['./factura.component.css'],
 })
 export class FacturaComponent implements OnInit {
-  constructor(private httpServ: ServiceFacturaService) {}
-  cliente: string = '';
+  constructor(private httpServ: ServiceFacturaService,private httppedido: ServicePedidosService ) {}
   factura: string = '';
+  id: string = '';
   hayError: boolean = false;
   datosFactura: datosFacturaOrden[] = [];
-  datosCliente: datosFacturaCliente[] = [];
 
   ngOnInit(): void {
-    this.buscarFactura(2421);
-    this.buscarCliente();
+    this.buscarFactura();
   }
-  buscarFactura(id: number) {
+
+  buscarFactura() {
+   this.id= this.httppedido.getpedido();
     this.hayError = false;
-    this.httpServ.obtenerInfoOrdenFactura(id).subscribe({
+    this.httpServ.obtenerInfoOrdenFactura(parseInt(this.id)).subscribe({
       next: (factura) => {
-        console.log(factura);
+        console.log('Factura jaja', factura);
         this.datosFactura = factura;
       },
       error: (err: Error) => {
@@ -31,18 +31,5 @@ export class FacturaComponent implements OnInit {
         this.datosFactura = [];
       },
     });    
-  }
-  buscarCliente() {
-    this.hayError = false;
-    this.httpServ.obtenerInfoClienteFactura().subscribe({
-      next: (client) => {
-        console.log(client);
-        this.datosCliente = client;
-      },
-      error: (err: Error) => {
-        this.hayError = true;
-        this.datosCliente = [];
-      },
-    });
   }
 }

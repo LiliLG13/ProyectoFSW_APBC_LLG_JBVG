@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-//import { datosEmpleados } from '../extra/SazonVegano.interfaces';
+import { datosEmpleados } from '../extra/SazonVegano.interfaces';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ServiceEmpleadosService {
   constructor(private http: HttpClient) {}
 
-  //  obtenerInfoMenu(): Observable<datosEmpleados[]> {
-  //   return this.http.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
-  //  }
+   obtenerInfoNuevoEmpleado(): Observable<datosEmpleados[]> {
+     return this.http.get<datosEmpleados[]>(`http://localhost:3050/empleados`);
+    }
 }

@@ -16,6 +16,7 @@ import { MainMeseroComponent } from './main-mesero/main-mesero.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { VerEmpleadosComponent } from './ver-empleados/ver-empleados.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

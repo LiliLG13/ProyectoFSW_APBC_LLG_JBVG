@@ -13,6 +13,24 @@ export interface datosVerEmpleados {
   usuario: '';
   pass: '';
 }
+export interface tipoEmp{
+  puesto:'',
+  contraseña: ''
+}
+export interface datosEmpleados {
+  nombre: '';
+  fechaNacimiento: '';
+  fechaIngreso: '';
+  estadoCivil: '';
+  direccion: '';
+  telefono: '';
+  correo: '';
+  puesto: '';
+  horasTrabajo: '';
+  sexo: '';
+  usuario: '';
+  contraseña: '';
+}
 
 export interface datosIngredientes {
   ID_Ingrediente: '';
@@ -50,11 +68,7 @@ export interface datosLogin {
   puesto: '';
 }
 
-export interface datosFacturaCliente {
-  nombre: '';
-  direccion: '';
-  correo: '';
-}
+
 export interface datosFacturaOrden {
   nombrePlato: '';
   descripcion: '';
@@ -63,7 +77,10 @@ export interface datosFacturaOrden {
   subtotal: '';
   fecha: '';
   totalPagar: 0;
-  ID_Orden: '';
+  nombre: '';
+  direccion: '';
+  correo: '';
+  idfactura: '';
 }
 
 export interface datosOrdenes {

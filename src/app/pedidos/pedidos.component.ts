@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { datospedidoOrdenes } from '../extra/SazonVegano.interfaces';
 import { ServicePedidosService } from './service-pedidos.service';
 
@@ -9,7 +10,7 @@ import { ServicePedidosService } from './service-pedidos.service';
 })
 export class PedidosComponent implements OnInit {
 
-  constructor(private httpServ: ServicePedidosService) {
+  constructor(private httpServ: ServicePedidosService, private router: Router) {
 
    }
     hayError: boolean = false;
@@ -31,6 +32,11 @@ export class PedidosComponent implements OnInit {
         this.pedido=[];
       },
     })
+  }
+
+  abrirfactura19(id: string){
+    this.httpServ.setpedido(id)
+    this.router.navigateByUrl('/factura')
   }
   }
  
